@@ -8,7 +8,7 @@ const cookiesOptions = {
   httpOnly: true,
   secure: true,
   sameSite: "strict",
-  maxAge: 3600000, // 1 hour
+  maxAge: 86400000, // 24 hour
 };
 
 const clearCookiesOptions = {
@@ -95,7 +95,9 @@ export const registerUser = async (req, res, next) => {
 
     res
       .status(201)
-      .json(new APIResponse(201, "User registered successfully", user));
+      .json(
+        new APIResponse(201, "User registered successfully", { user, token })
+      );
   } catch (error) {
     console.error("Error: User registration failed: ", error);
     next(error);
@@ -133,7 +135,9 @@ export const loginUser = async (req, res, next) => {
 
     res
       .status(200)
-      .json(new APIResponse(200, "User logged in successfully", user));
+      .json(
+        new APIResponse(200, "User logged in successfully", { user, token })
+      );
   } catch (error) {
     console.error("Error: User login failed: ", error);
     next(error);
