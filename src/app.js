@@ -6,7 +6,12 @@ import { APIError } from "./utils/APIError.js";
 
 const app = express();
 
-app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
+app.use(
+  cors({
+    credentials: true,
+    origin: ["http://localhost:5173", CORS_ORIGIN],
+  })
+);
 app.use(cookieParser());
 app.use(express.json({ limit: "16kb" }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
