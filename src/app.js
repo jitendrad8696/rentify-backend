@@ -16,6 +16,10 @@ import userRoutes from "./routes/user.routes.js";
 import propertiesRoutes from "./routes/properties.routes.js";
 
 //Routes
+
+app.get("/", (req, res) => {
+  res.json("Hello");
+});
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/properties", propertiesRoutes);
 
